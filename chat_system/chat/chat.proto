@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package chat;
+option go_package = "./chat";
+
+service Chat {
+  rpc ChatRoom(stream ClientRequest) returns (stream ServerResponse){}
+}
+
+message ClientRequest{
+  string request = 1;
+  int32 user_id = 2;  // can be message id
+  string userName = 3;
+  string ori_group_name = 4;
+  string new_group_name = 5;
+  int32 like_number = 6;
+  string Content = 7;
+  int32 Replica = 8;
+  int32 Timestamp = 9;
+  int32 GroupTimestamp = 10;
+  string FromServer = 11;
+  int32 MapIndex = 12;
+}
+
+message ServerResponse{
+  string request = 1;
+  string username = 2;
+  string content = 3;
+  int32 like = 4;
+  int32  msg_id = 5;
+  int32 user_id = 6;
+  string goodbye = 7;
+  int32 local_message = 8;
+}
